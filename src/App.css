@@ -1,3 +1,4 @@
 main {
     padding: 2vh 2vw;
+    box-sizing: border-box;
 }

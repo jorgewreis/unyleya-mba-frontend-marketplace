@@ -1,4 +1,4 @@
-import { useParams } from 'react-router-dom';
+import { Outlet, useParams } from 'react-router-dom';
 import './style.css';
 
 const Produto = () => {
@@ -12,6 +12,7 @@ const Produto = () => {
             <div className='id'>
                 <p>ID { id }</p>
             </div>
+            <Outlet />
         </div>
     );
 };

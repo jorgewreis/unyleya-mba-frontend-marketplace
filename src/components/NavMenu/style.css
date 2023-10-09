@@ -4,8 +4,9 @@ nav {
     align-items: center;
     justify-content: flex-start;
 
-    width: 100%;
+    width: 100vw;
     padding: 10px;
+    box-sizing: border-box;
 
     background-color: darkslateblue;
 }

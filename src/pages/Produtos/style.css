@@ -13,3 +13,38 @@
     text-decoration: none;
     color: #000;
 }
+
+.pagination {
+    position: absolute;
+    bottom: 10px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: fit-content;
+    padding: 0;
+    
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+
+    list-style: none;
+    background-color: #f0f0f065;
+    backdrop-filter: blur(5px);
+}
+
+.pagination > li {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    padding: 10px;
+    height: 30px;
+    width: 30px;
+    cursor: pointer;
+    transition: all 0.2s ease-in-out;
+}
+
+.pagination > li:hover {
+    background-color: #cacaca;
+    transition: all 0.2s ease-in-out;
+}

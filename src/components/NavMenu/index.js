@@ -11,6 +11,9 @@ const NavMenu = () => {
                 <Link to="/login">Login</Link>
             </div>
             <div className="nav-menu__item">
+                <Link to="/registro">Registro</Link>
+            </div>
+            <div className="nav-menu__item">
                 <Link to="/dashboard">Dashboard</Link>
             </div>
             <div className="nav-menu__item">

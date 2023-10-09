@@ -1,0 +1,39 @@
+nav {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: flex-start;
+
+    width: 100%;
+    padding: 10px;
+
+    background-color: darkslateblue;
+}
+
+nav > .nav-menu__item {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    
+    border-radius: 5px;
+    margin-left: 10px;
+    padding: 10px 25px;
+    cursor: pointer;
+    transition: all 0.6s ease-in-out;
+}
+
+nav > .nav-menu__item:hover {
+    background-color: #5a4fcf;
+    transition: all 0.2s ease-in-out;
+}
+
+nav > .nav-menu__item > a {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+
+    text-decoration: none;
+    color: white;
+}

@@ -1,0 +1,15 @@
+.list {
+    display: flex;
+    flex-direction: column;
+}
+
+.list > a {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    padding: 10px;
+    border-bottom: 1px solid #ccc;
+    text-decoration: none;
+    color: #000;
+}

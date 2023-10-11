@@ -1,30 +1,23 @@
-import './App.css';
-import Home from './pages/Home';
-import Login from './pages/Login';
-import Dashboard from './pages/Dashboard';
-import Produtos from './pages/Produtos';
-import Produto from './pages/Produto';
-import { Routes, Route } from 'react-router-dom';
-import NotFound from './pages/NotFound';
-import Registro from './pages/Registro';
-import Reviews from './pages/ProductReviews';
+import { Routes, Route } from "react-router-dom";
+import Home from "./pages/Home";
+import Login from "./pages/Login";
+import Cadastro from "./pages/Cadastro";
+import Produto from "./pages/Produto";
+import NotFound404 from "./pages/NotFound404";
+import NavBar from "./components/NavBar";
 
 function App() {
   return (
-      <main>
-        <Routes>
-          <Route path="/" element={<Home />} />
-          <Route path="/login" element={<Login />} />
-          <Route path="/dashboard" element={<Dashboard />} />
-          <Route path="/produtos" element={<Produtos />} />
-          <Route path="/produto/:id" element={<Produto />} >
-              <Route path="review" element={<Reviews />} />
-          </Route>
-          <Route path="/registro" element={<Registro />} />
-
-          <Route path="/*" element={<NotFound />} />
+      <>
+        <NavBar />
+        <Routes>            
+            <Route path="/" element={<Home />} />
+            <Route path="*" element={<NotFound404 />} />
+            <Route path="/login" element={<Login />} />
+            <Route path="/cadastro" element={<Cadastro />} />
+            <Route path="/produto/:id" element={<Produto />} />
         </Routes>
-      </main>
+      </>
   );
 }
 

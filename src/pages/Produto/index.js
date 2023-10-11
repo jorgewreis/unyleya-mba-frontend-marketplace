@@ -1,20 +1,9 @@
-import { Outlet, useParams } from 'react-router-dom';
-import './style.css';
+import React from 'react'
 
 const Produto = () => {
-    const { id } = useParams();
+  return (
+    <div>Produto</div>
+  )
+}
 
-    return (
-        <div>
-            <div className='title'>
-                <h2>Produto</h2>
-            </div>
-            <div className='id'>
-                <p>ID { id }</p>
-            </div>
-            <Outlet />
-        </div>
-    );
-};
-
-export default Produto;
+export default Produto

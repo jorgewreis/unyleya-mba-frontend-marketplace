@@ -3,7 +3,7 @@ import Logo from './../../assets/logo_full.png'
 import { AuthContext } from '../../context/AuthContext';
 
 const NavBar = () => {
-    const userLogged = useContext(AuthContext);
+    const { userLogged } = useContext(AuthContext);
     const navigate = useNavigate();
 
     return (

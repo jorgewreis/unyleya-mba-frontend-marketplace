@@ -1,6 +1,7 @@
-import React from 'react'
-import { Link, useLocation, useNavigate } from 'react-router-dom';
+import React, { useContext, useState } from 'react'
+import { useLocation, useNavigate } from 'react-router-dom';
 import Logo from '../../assets/logo_light.png'
+import { AuthContext } from '../../context/AuthContext';
 
 const Login = () => {
   const msg = useLocation();
@@ -12,6 +13,8 @@ const Login = () => {
           msg.remove();
       }
   }
+
+  const loginUser = useContext(AuthContext);
 
   const [inputValues, setInputValues] = useState({
     email: '',
@@ -27,14 +30,7 @@ const Login = () => {
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    fetch('http://localhost:3001/auth/login', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json'
-      },
-      body: JSON.stringify(inputValues)
-    });
-    navigate('/home');
+    loginUser(inputValues);
   }
 
   return (
@@ -53,15 +49,11 @@ const Login = () => {
                 <input type="password" id="senha" className='border border-slate-300 rounded-md py-2 px-6 w-80' required onChange={ handleInputChange }/>
             </div>
             <section className='footer-page mt-10'>
-              <Link to="/">
-                <button className='inline-block text-sm mx-4 px-6 py-3 leading-none border rounded text-white border-red-400 bg-red-600 hover:bg-red-500 transition duration-500 mt-4 lg:mt-0'>Voltar</button>
-              </Link>
+              <button className='inline-block text-sm mx-4 px-6 py-3 leading-none border rounded text-white border-red-400 bg-red-600 hover:bg-red-500 transition duration-500 mt-4 lg:mt-0' onClick={() => navigate('/login')}>Voltar</button>
               <button className='inline-block text-sm mx-4 px-6 py-3 leading-none border rounded text-white border-yellow-400 bg-yellow-300 text-gray-700 hover:bg-yellow-500 transition duration-500 mt-4 lg:mt-0' type="submit">Entrar</button>
             </section>
             <section className='footer-page mt-2'>
-              <Link to="/cadastro">
-                <button className='inline-block text-sm mx-4 px-6 py-2 leading-none border rounded text-gray-700 hover:bg-gray-100 transition duration-500 mt-4 lg:mt-0'>Ainda não tem cadastro? Clique aqui !</button>
-              </Link>
+              <button className='inline-block text-sm mx-4 px-6 py-2 leading-none border rounded text-gray-700 hover:bg-gray-100 transition duration-500 mt-4 lg:mt-0' onClick={() => navigate('/cadastro')}>Ainda não tem cadastro? Clique aqui !</button>
             </section>
         </form>
       </section>

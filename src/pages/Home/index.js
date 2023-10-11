@@ -5,7 +5,7 @@ import ProductList from '../../components/ProductList'
 
 const Home = () => {
   return (    
-    <div className='m-8 mt-32'>
+    <main className='m-8 mt-32'>
       <section className='title-page'>
         <h1 class="text-3xl font-bold tracking-tight text-gray-900">Home</h1>
       </section>
@@ -20,7 +20,7 @@ const Home = () => {
           <ProductList />
         </div>
       </section>
-    </div>
+    </main>
   )
 }
 

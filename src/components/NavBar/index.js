@@ -1,9 +1,13 @@
-import React, { useContext, useNavigate } from 'react'
+import React from 'react'
+import { useContext } from 'react';
+import { useNavigate } from 'react-router-dom';
 import Logo from './../../assets/logo_full.png'
 import { AuthContext } from '../../context/AuthContext';
+import { BiCartDownload } from 'react-icons/bi';
+
 
 const NavBar = () => {
-    const { userLogged } = useContext(AuthContext);
+    const { userLogged, logoutUser } = useContext(AuthContext);
     const navigate = useNavigate();
 
     return (
@@ -15,10 +19,24 @@ const NavBar = () => {
                         <span>King Chicken</span>
                     </div>
                 </div>
-                <div className='flex'>
-                    <button className='inline-block text-sm mx-4 px-6 py-3 leading-none border rounded text-white border-red-400 bg-red-600 hover:bg-red-500 transition duration-500 mt-4 lg:mt-0' onClick={() => navigate('/cadastro')}>Cadastro</button>
-                    <button className='inline-block text-sm px-6 py-3 leading-none border rounded text-gray-800 border-yellow-200 bg-yellow-400 hover:border-yellow-400 hover:text-gray-600 hover:bg-yellow-200 transition duration-500 mt-4 mr-6 lg:mt-0 ' onClick={() => navigate('/login')}>Entrar</button>
-                </div>
+                { userLogged ? (                    
+                    <div className='flex'>
+                        <button className='inline-block text-sm mx-4 px-6 py-3 leading-none border rounded text-white border-red-400 bg-red-600 hover:bg-red-500 transition duration-500 mt-4 lg:mt-0' onClick={() => navigate('/home')}>Home</button>
+                        <button className='inline-block text-sm mx-4 px-6 py-3 leading-none border rounded text-white border-red-400 bg-red-600 hover:bg-red-500 transition duration-500 mt-4 lg:mt-0' onClick={() => navigate('/produtos')}>Produtos</button>
+                        <button className='inline-block text-sm mx-4 px-6 py-3 leading-none border rounded text-white border-red-400 bg-red-600 hover:bg-red-500 transition duration-500 mt-4 lg:mt-0' onClick={() => navigate('/pedidos')}>Pedidos</button>
+                        <button className='inline-block text-sm mx-4 px-6 py-3 leading-none border rounded text-white border-red-400 bg-red-600 hover:bg-red-500 transition duration-500 mt-4 lg:mt-0' onClick={() => navigate('/perfil')}>Perfil</button>
+                        <div>
+                            <span className='text-white text-2xl'>0</span>
+                            <BiCartDownload className='text-white text-2xl' />
+                        </div>
+                        <button className='inline-block text-sm mx-4 px-6 py-3 leading-none border rounded text-white border-red-400 bg-red-600 hover:bg-red-500 transition duration-500 mt-4 lg:mt-0' onClick={ logoutUser }>Sair</button>
+                    </div>
+                ) : (
+                    <div className='flex'>
+                        <button className='inline-block text-sm mx-4 px-6 py-3 leading-none border rounded text-white border-red-400 bg-red-600 hover:bg-red-500 transition duration-500 mt-4 lg:mt-0' onClick={() => navigate('/cadastro')}>Cadastro</button>
+                        <button className='inline-block text-sm px-6 py-3 leading-none border rounded text-gray-800 border-yellow-200 bg-yellow-400 hover:border-yellow-400 hover:text-gray-600 hover:bg-yellow-200 transition duration-500 mt-4 mr-6 lg:mt-0 ' onClick={() => navigate('/')}>Entrar</button>
+                    </div>
+                )}
             </nav>
         </header>
     )

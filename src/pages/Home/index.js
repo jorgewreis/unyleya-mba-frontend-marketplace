@@ -7,7 +7,7 @@ const Home = () => {
   return (    
     <main className='m-8 mt-32'>
       <section className='title-page'>
-        <h1 class="text-3xl font-bold tracking-tight text-gray-900">Home</h1>
+        <h1 className="text-3xl font-bold tracking-tight text-gray-900">Home</h1>
       </section>
       <section className='flex flex-col items-center justify-center'>
         <img src={ Banner } className='shadow-md rounded-lg border border-slate-300' alt='banner'/>

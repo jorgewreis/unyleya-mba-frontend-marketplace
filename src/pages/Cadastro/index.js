@@ -35,7 +35,7 @@ const Cadastro = () => {
                   <Link to="/">
                     <button className='inline-block text-sm mx-4 px-6 py-3 leading-none border rounded text-white border-red-400 bg-red-600 hover:bg-red-500 transition duration-500 mt-4 lg:mt-0'>Voltar</button>
                   </Link>
-                  <button  className='inline-block text-sm mx-4 px-6 py-3 leading-none border rounded text-white border-yellow-400 bg-yellow-300 text-gray-700 hover:bg-yellow-500 transition duration-500 mt-4 lg:mt-0' type="submit">Cadastrar</button>
+                  <button  className='inline-block text-sm mx-4 px-6 py-3 leading-none border rounded text-gray-700 border-yellow-400 bg-yellow-300 text-gray-700 hover:bg-yellow-500 transition duration-500 mt-4 lg:mt-0' type="submit">Cadastrar</button>
                 </section>
             </form>
       </section>

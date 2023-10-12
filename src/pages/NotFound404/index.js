@@ -5,7 +5,7 @@ const NotFound404 =() => {
   return (
     <div className='m-8 mt-32'>
       <section className='title-page'>
-        <h1 class="text-3xl font-bold tracking-tight text-gray-900">Página não encontrada</h1>
+        <h1 className="text-3xl font-bold tracking-tight text-gray-900">Página não encontrada</h1>
       </section>
       <section className='footer-page mt-10'>
         <Link to="/">

@@ -1,32 +1,24 @@
-import React, { createContext, useNavigate } from 'react'
-
+import React from 'react';
+import { createContext } from 'react';
+import useAuth from '../hooks/useAuth';
 
 const AuthContext = createContext();
 
 const AuthProvider = ({ children }) => {
-    cons [userLogged, setUserLogged] = useState(false);
-    const navigate = useNavigate();
+    const { userLogged, loading, loginUser, logoutUser } = useAuth();
 
-    const loginUser = async (inputValues) => {
-        const response = await fetch('http://localhost:3001/auth/login', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify(inputValues)
-            });
-        setUserLogged(true);
-        navigate('/home');
+    if (loading) {
+        return <h1 className='w-screen h-screen flex items-center justify-center font-semibold text-3xl text-gray-600'>Carregando...</h1>
+    } else {
+        return (
+            <AuthContext.Provider value={{ userLogged, loginUser, logoutUser }}>
+                { children }
+            </AuthContext.Provider>
+        )
     }
-
-    return (
-        <AuthContext.Provider value={{ userLogged, loginUser }}>
-            { children }
-        </AuthContext.Provider>
-    )
 }
 
 export { 
     AuthContext,
-    AuthProvider 
+    AuthProvider
 };

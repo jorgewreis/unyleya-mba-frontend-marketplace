@@ -4,6 +4,7 @@ import { useNavigate } from 'react-router-dom';
 import Logo from './../../assets/logo_full.png'
 import { AuthContext } from '../../context/AuthContext';
 import { BiCartDownload } from 'react-icons/bi';
+import { MdHome, MdLogout, MdSettings } from 'react-icons/md';
 
 
 const NavBar = () => {
@@ -11,7 +12,7 @@ const NavBar = () => {
     const navigate = useNavigate();
 
     return (
-        <header className='bg-transparent w-full fixed top-0'>
+        <header className='bg-transparent w-full fixed top-0 z-50'>
             <nav className='flex items-center justify-between flex-wrap bg-red-600 p-2 shadow-xl'>
                 <div className='flex'>
                     <img src={Logo} alt='logo' className='w-20 ml-10 mr-10' />
@@ -21,17 +22,26 @@ const NavBar = () => {
                 </div>
                 { userLogged ? (                    
                     <div className='flex'>
-                        <div className='flex items-center flex-shrink-0 text-yellow-400 tracking-wide font-title'>
-                            <span className='mr-2'>{ userFull.nome }</span>
+                        <div className='flex flex-row items-center flex-shrink-0 text-yellow-400 tracking-wide text-lg'>
+                            <span className='mr-10'>{ userFull.nome }</span>
+                            <button className='flex items-center justify-center rounded text-white w-14 h-14 text-2xl p-2 hover:bg-red-500' onClick={() => navigate('/home') }>
+                                <MdHome />
+                            </button>
+                            <div className='relative flex flex-row'>
+                                <button className='flex items-center justify-center rounded text-white w-14 h-14 text-2xl p-2 hover:bg-red-500' onClick={() => navigate('/cart') }>
+                                    <BiCartDownload />
+                                </button>
+                                <div className='absolute top-4 right-2 inline-flex items-center justify-center px-2 py-1 text-xs font-normal leading-none text-red-200 transform translate-x-1/2 -translate-y-1/2 rounded-full'>
+                                    0
+                                </div>
+                            </div>
+                            <button className='flex items-center justify-center rounded text-white w-14 h-14 text-2xl p-2 hover:bg-red-500' onClick={() => navigate('/admin') }>
+                                <MdSettings />
+                            </button>
+                            <button className='flex items-center justify-center rounded text-white w-14 h-14 text-2xl p-2 hover:bg-red-500' onClick={ logoutUser }>
+                                <MdLogout />
+                            </button>
                         </div>
-                        <button className='inline-block text-sm mx-4 px-6 py-3 leading-none border rounded text-white border-red-400 bg-red-600 hover:bg-red-500 transition duration-500 mt-4 lg:mt-0' onClick={() => navigate('/home')}>Home</button>
-                        <button className='inline-block text-sm mx-4 px-6 py-3 leading-none border rounded text-white border-red-400 bg-red-600 hover:bg-red-500 transition duration-500 mt-4 lg:mt-0' onClick={() => navigate('/perfil')}>Perfil</button>
-                        <button className='inline-block text-sm mx-4 px-6 py-3 leading-none border rounded text-white border-red-400 bg-red-600 hover:bg-red-500 transition duration-500 mt-4 lg:mt-0'>
-                            <span className='text-white text-sm'>0</span>
-                            <BiCartDownload className='text-white text-2xl' />
-                        </button>                        
-                        <button className='inline-block text-sm mx-4 px-6 py-3 leading-none border rounded text-white border-red-400 bg-red-600 hover:bg-red-500 transition duration-500 mt-4 lg:mt-0' onClick={() => navigate('/admin') }>Admin</button>
-                        <button className='inline-block text-sm mx-4 px-6 py-3 leading-none border rounded text-white border-red-400 bg-red-600 hover:bg-red-500 transition duration-500 mt-4 lg:mt-0' onClick={ logoutUser }>Sair</button>
                     </div>
                 ) : (
                     <div className='flex'>

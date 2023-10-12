@@ -25,7 +25,6 @@ const useAuth = () => {
 
     const loginUser = async (inputValues) => {
         const response = await loginUserApi(inputValues);
-        console.log(response);
         const data = await response.data;
         sessionStorage.setItem('userInfo', JSON.stringify(data));
         Api.defaults.headers.common['Authorization'] = `Bearer ${response.data.token}`;
@@ -41,10 +40,10 @@ const useAuth = () => {
 
     const findUserById = async (idUser) => {
         const response = await getUserById(idUser);
-        setUserFull(response.data);
+        await setUserFull(response.data);
     }
 
-    return { userLogged, loading, loginUser, logoutUser, userFull };
+    return { userLogged, loading, userFull, loginUser, logoutUser };
 }
 
 export default useAuth;

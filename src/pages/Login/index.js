@@ -31,7 +31,7 @@ const Login = () => {
 
   const handleSubmit = async (event) => {
     event.preventDefault();
-    await loginUser(inputValues);    
+    await loginUser(inputValues); 
   };
 
   return (

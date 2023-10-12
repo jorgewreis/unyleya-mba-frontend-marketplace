@@ -7,9 +7,7 @@ import NotFound404 from "./pages/NotFound404";
 import NavBar from "./components/NavBar";
 import { AuthProvider } from "./context/AuthContext";
 import ProtectedRoute from "./routes/ProtectedRoute";
-
-
-
+import Admin from "./pages/Admin";
 
 function App() {
   return (
@@ -26,15 +24,17 @@ function App() {
                 </ProtectedRoute>
               } />
 
-              <Route path="/cadastro" element={
-                <ProtectedRoute>
-                  <Cadastro />
-                </ProtectedRoute>
-              } />              
+              <Route path="/cadastro" element={<Cadastro />} />
 
               <Route path="/produto/:id" element={
                 <ProtectedRoute>
                   <Produto />
+                </ProtectedRoute>
+              } />
+
+              <Route path="/admin" element={
+                <ProtectedRoute>
+                  <Admin />
                 </ProtectedRoute>
               } />
           </Routes>

@@ -7,7 +7,7 @@ import { BiCartDownload } from 'react-icons/bi';
 
 
 const NavBar = () => {
-    const { userLogged, logoutUser } = useContext(AuthContext);
+    const { userLogged, userFull, logoutUser } = useContext(AuthContext);
     const navigate = useNavigate();
 
     return (
@@ -21,14 +21,16 @@ const NavBar = () => {
                 </div>
                 { userLogged ? (                    
                     <div className='flex'>
-                        <button className='inline-block text-sm mx-4 px-6 py-3 leading-none border rounded text-white border-red-400 bg-red-600 hover:bg-red-500 transition duration-500 mt-4 lg:mt-0' onClick={() => navigate('/home')}>Home</button>
-                        <button className='inline-block text-sm mx-4 px-6 py-3 leading-none border rounded text-white border-red-400 bg-red-600 hover:bg-red-500 transition duration-500 mt-4 lg:mt-0' onClick={() => navigate('/produtos')}>Produtos</button>
-                        <button className='inline-block text-sm mx-4 px-6 py-3 leading-none border rounded text-white border-red-400 bg-red-600 hover:bg-red-500 transition duration-500 mt-4 lg:mt-0' onClick={() => navigate('/pedidos')}>Pedidos</button>
-                        <button className='inline-block text-sm mx-4 px-6 py-3 leading-none border rounded text-white border-red-400 bg-red-600 hover:bg-red-500 transition duration-500 mt-4 lg:mt-0' onClick={() => navigate('/perfil')}>Perfil</button>
-                        <div>
-                            <span className='text-white text-2xl'>0</span>
-                            <BiCartDownload className='text-white text-2xl' />
+                        <div className='flex items-center flex-shrink-0 text-yellow-400 tracking-wide font-title'>
+                            <span className='mr-2'>{ userFull.nome }</span>
                         </div>
+                        <button className='inline-block text-sm mx-4 px-6 py-3 leading-none border rounded text-white border-red-400 bg-red-600 hover:bg-red-500 transition duration-500 mt-4 lg:mt-0' onClick={() => navigate('/home')}>Home</button>
+                        <button className='inline-block text-sm mx-4 px-6 py-3 leading-none border rounded text-white border-red-400 bg-red-600 hover:bg-red-500 transition duration-500 mt-4 lg:mt-0' onClick={() => navigate('/perfil')}>Perfil</button>
+                        <button className='inline-block text-sm mx-4 px-6 py-3 leading-none border rounded text-white border-red-400 bg-red-600 hover:bg-red-500 transition duration-500 mt-4 lg:mt-0'>
+                            <span className='text-white text-sm'>0</span>
+                            <BiCartDownload className='text-white text-2xl' />
+                        </button>                        
+                        <button className='inline-block text-sm mx-4 px-6 py-3 leading-none border rounded text-white border-red-400 bg-red-600 hover:bg-red-500 transition duration-500 mt-4 lg:mt-0' onClick={() => navigate('/admin') }>Admin</button>
                         <button className='inline-block text-sm mx-4 px-6 py-3 leading-none border rounded text-white border-red-400 bg-red-600 hover:bg-red-500 transition duration-500 mt-4 lg:mt-0' onClick={ logoutUser }>Sair</button>
                     </div>
                 ) : (

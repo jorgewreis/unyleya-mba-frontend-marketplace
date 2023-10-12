@@ -1,36 +1,34 @@
 import { useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
+import { loginUserApi, getUserById } from "../services/AuthService";
+import Api from "../services/Api";
 
 const useAuth = () => {
     const [userLogged, setUserLogged] = useState(false);
     const [loading, setLoading] = useState(true);
+    const [userFull, setUserFull] = useState({});
     const navigate = useNavigate();
 
     useEffect(() => {
-        const userInfo = sessionStorage.getItem('userInfo');
+        const userInfo = JSON.parse(sessionStorage.getItem('userInfo'));
         if(userInfo) {
-            setUserLogged(true);
-            console.log('Usuário logado!');
+            Api.defaults.headers.common['Authorization'] = `Bearer ${userInfo.token}`;
+            findUserById(userInfo.id);
+            setUserLogged(true);            
             <Link to='/home' /> 
         } else {
             setUserLogged(false);
-            console.log('Usuário não logado!');
-            <Link to='/login' />
+            <Link to='/' />
         }
         setLoading(false);
     }, []);
 
     const loginUser = async (inputValues) => {
-        const response = await fetch('http://localhost:27017/auth/login', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify(inputValues)
-            });
-        const data = await response.json();
+        const response = await loginUserApi(inputValues);
+        console.log(response);
+        const data = await response.data;
         sessionStorage.setItem('userInfo', JSON.stringify(data));
-
+        Api.defaults.headers.common['Authorization'] = `Bearer ${response.data.token}`;
         setUserLogged(true);
         navigate('/home');
     }
@@ -38,11 +36,15 @@ const useAuth = () => {
     const logoutUser = () => {
         sessionStorage.removeItem('userInfo');
         setUserLogged(false);
-        console.log('Usuário desconectado!');
-        navigate('/login');
+        navigate('/');
     }
 
-    return { userLogged, loading, loginUser, logoutUser };
+    const findUserById = async (idUser) => {
+        const response = await getUserById(idUser);
+        setUserFull(response.data);
+    }
+
+    return { userLogged, loading, loginUser, logoutUser, userFull };
 }
 
 export default useAuth;

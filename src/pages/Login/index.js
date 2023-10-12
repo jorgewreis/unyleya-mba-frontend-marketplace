@@ -25,13 +25,13 @@ const Login = () => {
   const handleInputChange = (event) => {
     setInputValues({
       ...inputValues,
-      [event.target.name]: event.target.value,
+      [event.target.id]: event.target.value,
     });
   };
 
   const handleSubmit = async (event) => {
     event.preventDefault();
-    loginUser(inputValues);
+    await loginUser(inputValues);    
   };
 
   return (
@@ -51,7 +51,7 @@ const Login = () => {
               className="border border-slate-300 rounded-md py-2 px-6 w-80"
               autoComplete="username"
               required
-              onChange={handleInputChange}
+              onChange={ handleInputChange }
             />
           </div>
           <div className="form-control flex flex-col my-2">
@@ -64,7 +64,7 @@ const Login = () => {
               className="border border-slate-300 rounded-md py-2 px-6 w-80"
               autoComplete="current-password"
               required
-              onChange={handleInputChange}
+              onChange={ handleInputChange }
             />
           </div>
           <section className="footer-page mt-10">
@@ -75,7 +75,7 @@ const Login = () => {
               Voltar
             </button>
             <button
-              className="inline-block text-sm mx-4 px-6 py-3 leading-none border rounded text-gray-700 border-yellow-400 bg-yellow-300 text-gray-700 hover:bg-yellow-500 transition duration-500 mt-4 lg:mt-0"
+              className="inline-block text-sm mx-4 px-6 py-3 leading-none border rounded border-yellow-400 bg-yellow-300 text-gray-700 hover:bg-yellow-500 transition duration-500 mt-4 lg:mt-0"
               type="submit"
             >
               Entrar

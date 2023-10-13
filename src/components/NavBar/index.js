@@ -22,11 +22,11 @@ const NavBar = () => {
                 </div>
                 { userLogged ? (                    
                     <div className='flex'>
-                        <div className='flex flex-row items-center flex-shrink-0 text-yellow-400 tracking-wide text-lg'>
-                            <span className='mr-10'>{ userFull.nome }</span>
+                        <div className='flex flex-row items-center flex-shrink-0 text-yellow-400 tracking-wide text-lg'>                            
                             <button className='flex items-center justify-center rounded text-white w-14 h-14 text-2xl p-2 hover:bg-red-500' onClick={() => navigate('/home') }>
                                 <MdHome />
                             </button>
+                            
                             <div className='relative flex flex-row'>
                                 <button className='flex items-center justify-center rounded text-white w-14 h-14 text-2xl p-2 hover:bg-red-500' onClick={() => navigate('/cart') }>
                                     <BiCartDownload />
@@ -35,9 +35,14 @@ const NavBar = () => {
                                     0
                                 </div>
                             </div>
+                            <span className='mx-4 text-white'>{ userFull.nome }</span>
+                            { userFull.admin ? (
                             <button className='flex items-center justify-center rounded text-white w-14 h-14 text-2xl p-2 hover:bg-red-500' onClick={() => navigate('/admin') }>
                                 <MdSettings />
                             </button>
+                            ) : (
+                                <></>
+                            )}
                             <button className='flex items-center justify-center rounded text-white w-14 h-14 text-2xl p-2 hover:bg-red-500' onClick={ logoutUser }>
                                 <MdLogout />
                             </button>

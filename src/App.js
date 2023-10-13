@@ -8,6 +8,7 @@ import NavBar from "./components/NavBar";
 import { AuthProvider } from "./context/AuthContext";
 import ProtectedRoute from "./routes/ProtectedRoute";
 import Admin from "./pages/Admin";
+import AddProduct from "./pages/AddProduct";
 
 function App() {
   return (
@@ -35,6 +36,12 @@ function App() {
               <Route path="/admin" element={
                 <ProtectedRoute>
                   <Admin />
+                </ProtectedRoute>
+              } />
+
+              <Route path="/addProduct" element={
+                <ProtectedRoute>
+                  <AddProduct />
                 </ProtectedRoute>
               } />
           </Routes>

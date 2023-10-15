@@ -1,34 +1,43 @@
 import React, { useState, useEffect } from 'react';
-import { findAllCategories } from '../../services/CategoryService';
+import { useParams, useNavigate } from 'react-router-dom';
 import { MultiSelect } from 'react-multi-select-component';
-import { addProductApi } from '../../services/ProductService';
-import { useNavigate } from 'react-router-dom';
+import { findAllCategories } from '../../services/CategoryService';
+import { findProductById, updateProduct } from '../../services/ProductService';
 
-const AddProduct = () => {
+const EditProduct = () => {
+  const navigate = useNavigate();
+  const { id } = useParams();
+
   const [productForm, setProductForm] = useState({
     nome: '',
     descricao: '',
-    imagem: '',
-    categoria: [{ _id: ''}],
     precoUnitario: 0,
     codigodebarras: ''
   });
 
-  const [categories, setCategories] = useState([]);
+  useEffect(() => {
+    // getCategories();
+    getProductById();
+  }, []);
+
+  // const [categories, setCategories] = useState([]);
   const [selected, setSelected] = useState([]);
-
-  const navigate = useNavigate();
-
-  const getCategories = async () => {
-    const response = await findAllCategories();
-    const categoriesSelect = response.map((category) => {
-      return {
-        value: category._id,
-        label: category.nome
-      }
-    });
-    setCategories(categoriesSelect);
+  
+  const getProductById = async () => {
+    const response = await findProductById(id);
+    setProductForm(response);
   }
+
+  // const getCategories = async () => {
+  //   const response = await findAllCategories();
+  //   const categoriesSelect = response.map((category) => {
+  //     return {
+  //       value: category._id,
+  //       label: category.nome
+  //     }
+  //   });
+  //   setCategories(categoriesSelect);
+  // }
 
   const handleInputChange = (event) => {
     setProductForm({
@@ -39,28 +48,16 @@ const AddProduct = () => {
 
   const handleSubmit = async (event) => {
     event.preventDefault();
-    const categoriesId = selected.map(category => {
-      return {
-        _id: category.value
-      }
-    });
-    const product = {
-      ...productForm,
-      categoria: categoriesId,
-      precoUnitario: parseFloat(productForm.precoUnitario, 2),
+    const response = await updateProduct(id, productForm);
+    if (response) {
+      navigate('/admin');
     }
-    const response = await addProductApi(product);
-    navigate('/admin');
   };
-
-  useEffect(() => {
-    getCategories();
-  }, []);
 
   return (
     <main className='m-8 mt-32'>
         <section className='title-page'>
-        <h1 className="text-3xl font-bold tracking-tight text-gray-900">Admin - Add Product</h1>
+        <h1 className="text-3xl font-bold tracking-tight text-gray-900">Admin - Edit Product</h1>
         </section>
         <form onSubmit={ handleSubmit } className='flex flex-row flex-wrap mt-8 shadow sm:rounded-md sm:overflow-hidden justify-between max-w-screen-xl'>
           <div className='left px-4 py-5 bg-white space-y-6 sm:p-6 w-1/2'>
@@ -77,6 +74,7 @@ const AddProduct = () => {
                               className='input-padrao w-80'
                               placeholder='Product Name' required
                               onChange={handleInputChange}
+                              value={productForm.nome}
                           />
                       </div>
                   </div>                        
@@ -94,6 +92,7 @@ const AddProduct = () => {
                           placeholder='Product Description'
                           defaultValue={''}
                           onChange={handleInputChange}
+                          value={productForm.descricao}
                       />
                   </div>
               </div>              
@@ -109,7 +108,7 @@ const AddProduct = () => {
                               id='imagem'
                               className='input-padrao w-full'
                               placeholder='Product Image'
-                              onChange={handleInputChange}
+                              onChange={handleInputChange}                              
                           />
                       </div>
                   </div>
@@ -117,7 +116,7 @@ const AddProduct = () => {
           </div>
 
           <div className='right left px-4 py-5 bg-white space-y-6 sm:p-6 border-l w-1/2'>
-            <div className='flex flex-row justify-between'>
+            {/* <div className='flex flex-row justify-between'>
               <div className='col-span-3 sm:col-span-2'>
                   <label htmlFor='categoria' className='label-padrao required'>
                       Categoria
@@ -131,7 +130,7 @@ const AddProduct = () => {
                     className='w-80'                    
                   />
               </div>                            
-            </div>
+            </div> */}
 
             <div className='flex flex-row justify-between'>
               <div className='col-span-3 sm:col-span-2'>
@@ -146,6 +145,7 @@ const AddProduct = () => {
                           className='input-padrao w-36 text-right'
                           defaultValue='1.00' step='0.01' required
                           onChange={handleInputChange}
+                          value={ parseFloat(productForm.precoUnitario)}
                       />
                   </div>
               </div>
@@ -161,6 +161,7 @@ const AddProduct = () => {
                           className='input-padrao w-48 text-right'
                           placeholder='0000000000-0' required
                           onChange={handleInputChange}
+                          value={productForm.codigodebarras}
                       />
                   </div>
               </div>
@@ -171,7 +172,7 @@ const AddProduct = () => {
                     type='submit'
                     className='inline-block text-sm mx-4 px-6 py-3 leading-none border rounded text-white border-red-400 bg-red-600 hover:bg-red-500 transition duration-500 mt-4 lg:mt-0'
                 >
-                    Cadastrar
+                    Salvar alterações
                 </button>
             </div>
         </form>
@@ -179,4 +180,4 @@ const AddProduct = () => {
   )
 }
 
-export default AddProduct
+export default EditProduct

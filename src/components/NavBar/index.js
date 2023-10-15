@@ -35,13 +35,19 @@ const NavBar = () => {
                                     0
                                 </div>
                             </div>
-                            <span className='mx-4 text-white'>{ userFull.nome }</span>
                             { userFull.admin ? (
-                            <button className='flex items-center justify-center rounded text-white w-14 h-14 text-2xl p-2 hover:bg-red-500' onClick={() => navigate('/admin') }>
-                                <MdSettings />
-                            </button>
+                                <div className='flex flex-row items-center'>
+                                    <div className='relative flex flex-row'>
+                                        <span className='mx-4 text-white text-sm bg-red-500 py-2 px-4 rounded-md cursor-pointer'>{ userFull.nome }</span>
+                                    </div>
+                                    <div className='relative flex flex-row'>
+                                        <button className='flex items-center justify-center rounded text-white w-14 h-14 text-2xl p-2 hover:bg-red-500' onClick={() => navigate('/admin') }>
+                                            <MdSettings />
+                                        </button>
+                                    </div>
+                                </div>
                             ) : (
-                                <></>
+                                <span className='mx-4 text-white'>{ userFull.nome }</span>
                             )}
                             <button className='flex items-center justify-center rounded text-white w-14 h-14 text-2xl p-2 hover:bg-red-500' onClick={ logoutUser }>
                                 <MdLogout />

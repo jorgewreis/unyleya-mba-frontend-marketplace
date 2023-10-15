@@ -10,7 +10,7 @@ const Home = () => {
         <h1 className="text-3xl font-bold tracking-tight text-gray-900">Home</h1>
       </section>
       <section className='flex flex-col items-center justify-center'>
-        <img src={ Banner } className='shadow-md rounded-lg border border-slate-300' alt='banner'/>
+        <img src={ Banner } className='shadow-md rounded-lg border border-slate-300 mt-8' alt='banner'/>
         
         {/* Categorias */}
         <div></div>

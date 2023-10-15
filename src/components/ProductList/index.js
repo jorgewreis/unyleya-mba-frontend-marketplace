@@ -1,11 +1,21 @@
 import React, { useState } from 'react';
 import Product from '../Product';
 import productMock from '../../mock/product';
+import { findAllProducts } from '../../services/ProductService';
+import { useEffect } from 'react';
 
 const ProductList = () => {
     const [categoriaTab, setCategoriaTab] = useState('Fast');
+    const [products, setProducts] = useState([]);
 
-    const [products, setProducts] = useState(productMock);
+    const getProducts = async () => {
+        const response = await findAllProducts()
+        setProducts(response)
+    }
+
+    useEffect(() => {
+        getProducts();
+    }, [])   
 
     return (
         <section className='my-6 text-xl w-full'>
@@ -16,7 +26,7 @@ const ProductList = () => {
             </div>
 
             <div className='flex flex-row flex-wrap justify-around'>
-                {productMock.map((product) => (
+                {products.map((product) => (
                     <Product key={product._id} product={product} />
                 ))}
             </div>

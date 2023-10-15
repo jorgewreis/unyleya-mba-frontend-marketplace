@@ -21,4 +21,27 @@
     .menu-cat:hover {
         @apply border border-slate-300 rounded-md px-6 py-1 text-base font-normal cursor-pointer bg-yellow-100;
     }
+
+    .label-padrao {
+        @apply text-gray-400 font-light text-xs ml-4;
+    }
+
+    .label-padrao.required::after {
+        content: "*req";
+        color: red;
+        margin-left: 4px;
+        font-size: 12px;
+    }
+
+    .input-padrao {
+        @apply border border-slate-300 rounded-md px-2 py-1 text-base font-normal bg-gray-100 text-gray-700;
+    }
+
+    .input-text-padrao {
+        @apply border border-slate-300 rounded-md px-2 py-1 text-base font-normal bg-gray-100 text-gray-700;
+    }
+    
+    .select-padrao {
+        @apply border border-slate-300 rounded-md px-2 py-1 text-base font-normal bg-gray-100 text-gray-700;
+    }
 }

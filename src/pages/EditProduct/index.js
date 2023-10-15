@@ -1,7 +1,5 @@
 import React, { useState, useEffect } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
-import { MultiSelect } from 'react-multi-select-component';
-import { findAllCategories } from '../../services/CategoryService';
 import { findProductById, updateProduct } from '../../services/ProductService';
 
 const EditProduct = () => {
@@ -11,33 +9,19 @@ const EditProduct = () => {
   const [productForm, setProductForm] = useState({
     nome: '',
     descricao: '',
+    imagem: '',
     precoUnitario: 0,
     codigodebarras: ''
   });
 
   useEffect(() => {
-    // getCategories();
     getProductById();
   }, []);
-
-  // const [categories, setCategories] = useState([]);
-  const [selected, setSelected] = useState([]);
   
   const getProductById = async () => {
     const response = await findProductById(id);
     setProductForm(response);
   }
-
-  // const getCategories = async () => {
-  //   const response = await findAllCategories();
-  //   const categoriesSelect = response.map((category) => {
-  //     return {
-  //       value: category._id,
-  //       label: category.nome
-  //     }
-  //   });
-  //   setCategories(categoriesSelect);
-  // }
 
   const handleInputChange = (event) => {
     setProductForm({
@@ -56,7 +40,7 @@ const EditProduct = () => {
 
   return (
     <main className='m-8 mt-32'>
-        <section className='title-page'>
+        <section className='title'>
         <h1 className="text-3xl font-bold tracking-tight text-gray-900">Admin - Edit Product</h1>
         </section>
         <form onSubmit={ handleSubmit } className='flex flex-row flex-wrap mt-8 shadow sm:rounded-md sm:overflow-hidden justify-between max-w-screen-xl'>
@@ -74,7 +58,7 @@ const EditProduct = () => {
                               className='input-padrao w-80'
                               placeholder='Product Name' required
                               onChange={handleInputChange}
-                              value={productForm.nome}
+                              value={ productForm.nome }
                           />
                       </div>
                   </div>                        
@@ -90,9 +74,8 @@ const EditProduct = () => {
                           rows={3}
                           className='input-text-padrao w-full'
                           placeholder='Product Description'
-                          defaultValue={''}
-                          onChange={handleInputChange}
-                          value={productForm.descricao}
+                          onChange={ handleInputChange }
+                          value={ productForm.descricao }
                       />
                   </div>
               </div>              
@@ -103,12 +86,13 @@ const EditProduct = () => {
                       </label>
                       <div>
                           <input
-                              type='file'
+                              type='text'
                               name='imagem'
                               id='imagem'
                               className='input-padrao w-full'
-                              placeholder='Product Image'
-                              onChange={handleInputChange}                              
+                              placeholder='Image address' required
+                              onChange={ handleInputChange }
+                              value={ productForm.imagem }                           
                           />
                       </div>
                   </div>
@@ -143,9 +127,9 @@ const EditProduct = () => {
                           name='precoUnitario'
                           id='precoUnitario'
                           className='input-padrao w-36 text-right'
-                          defaultValue='1.00' step='0.01' required
-                          onChange={handleInputChange}
-                          value={ parseFloat(productForm.precoUnitario)}
+                          step='0.01' required
+                          onChange={ handleInputChange }
+                          value={ parseFloat( productForm.precoUnitario )}
                       />
                   </div>
               </div>
@@ -160,8 +144,8 @@ const EditProduct = () => {
                           id='codigodebarras'
                           className='input-padrao w-48 text-right'
                           placeholder='0000000000-0' required
-                          onChange={handleInputChange}
-                          value={productForm.codigodebarras}
+                          onChange={ handleInputChange }
+                          value={ productForm.codigodebarras }
                       />
                   </div>
               </div>

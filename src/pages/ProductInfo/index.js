@@ -42,9 +42,9 @@ const ProductInfo = () => {
         <h1 className="text-3xl font-bold tracking-tight text-gray-900">Informações do Produto</h1>
       </section>
 
-      <section className='product-info flex flex-row'>
-        <div className='product-image w-80 mr-8'>
-          <img src='' alt='product' />
+      <section className='product-info flex flex-row mt-8'>
+        <div className='product-image w-80 mr-8 flex flex-row items-center justify-center'>
+          <img src={product.imagem} className='max-h-[250px]' alt='product' />
         </div>
 
         <div className='product-details flex flex-col'>

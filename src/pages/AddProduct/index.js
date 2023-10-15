@@ -49,7 +49,7 @@ const AddProduct = () => {
       categoria: categoriesId,
       precoUnitario: parseFloat(productForm.precoUnitario, 2),
     }
-    const response = await addProductApi(product);
+    await addProductApi(product);
     navigate('/admin');
   };
 
@@ -103,14 +103,14 @@ const AddProduct = () => {
                           Imagem
                       </label>
                       <div>
-                          <input
-                              type='file'
+                            <input
+                              type='text'
                               name='imagem'
                               id='imagem'
-                              className='input-padrao w-full'
-                              placeholder='Product Image'
+                              className='input-padrao w-96'
+                              placeholder='Image address' required
                               onChange={handleInputChange}
-                          />
+                          />                          
                       </div>
                   </div>
               </div>              

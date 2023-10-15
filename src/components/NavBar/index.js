@@ -1,5 +1,5 @@
 import React from 'react'
-import { useContext } from 'react';
+import { useContext, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import Logo from './../../assets/logo_full.png'
 import { AuthContext } from '../../context/AuthContext';
@@ -10,6 +10,11 @@ import { MdHome, MdLogout, MdSettings } from 'react-icons/md';
 const NavBar = () => {
     const { userLogged, userFull, logoutUser } = useContext(AuthContext);
     const navigate = useNavigate();
+
+    useEffect(() => {
+        console.log(userLogged);    
+        console.log(userFull.admin);
+    }, [userFull]);
 
     return (
         <header className='bg-transparent w-full fixed top-0 z-50'>
@@ -47,7 +52,7 @@ const NavBar = () => {
                                     </div>
                                 </div>
                             ) : (
-                                <span className='mx-4 text-white'>{ userFull.nome }</span>
+                                <span className='mx-4 text-white'>{ userLogged.nome }</span>
                             )}
                             <button className='flex items-center justify-center rounded text-white w-14 h-14 text-2xl p-2 hover:bg-red-500' onClick={ logoutUser }>
                                 <MdLogout />

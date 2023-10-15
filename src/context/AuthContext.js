@@ -6,7 +6,7 @@ const AuthContext = createContext();
 
 const AuthProvider = ({ children }) => {
     const { userLogged, userFull, loading, loginUser, logoutUser } = useAuth();
-
+    
     if (loading) {
         return <h1 className='w-screen h-screen flex items-center justify-center font-semibold text-3xl text-gray-600'>Carregando...</h1>
     } else {

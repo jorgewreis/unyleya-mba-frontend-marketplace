@@ -54,11 +54,11 @@ const Cart = () => {
             setAddress({
                 ...address,                
                 logradouro: `${response.data.logradouro}`,
-                bairro: `${response.data.bairro}` + ' - ' + `${response.data.localidade}` + '/' + `${response.data.uf}`
+                bairro: `${response.data.bairro} - ${response.data.localidade}/${response.data.uf}`
             })
         })        
     }
-
+    
     const handleChangeValues = (event) => {
         setAddress({
             ...address,

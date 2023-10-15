@@ -31,7 +31,7 @@ const Login = () => {
 
   const handleSubmit = async (event) => {
     event.preventDefault();
-    await loginUser(inputValues); 
+    await loginUser(inputValues);
   };
 
   return (
@@ -80,8 +80,9 @@ const Login = () => {
             >
               Entrar
             </button>
-          </section>
-          <section className="footer-page mt-2">
+          </section>          
+        </form>
+        <section className="footer-page mt-2">
             <button
               className="inline-block text-sm mx-4 px-6 py-2 leading-none border rounded text-gray-700 hover:bg-gray-100 transition duration-500 mt-4 lg:mt-0"
               onClick={() => navigate("/cadastro")}
@@ -89,7 +90,6 @@ const Login = () => {
               Ainda não tem cadastro? Clique aqui !
             </button>
           </section>
-        </form>
       </section>
     </main>
   );

@@ -44,7 +44,7 @@ const ProductInfo = () => {
 
       <section className='product-info flex flex-row mt-8'>
         <div className='product-image w-80 mr-8 flex flex-row items-center justify-center'>
-          <img src={product.imagem} className='max-h-[250px]' alt='product' />
+          <img src={product.imagem} className='max-w-[200] max-h-[250px] w-auto h-auto rounded-md' alt='product' />
         </div>
 
         <div className='product-details flex flex-col'>

@@ -1,11 +1,10 @@
 import React, { useState } from 'react';
 import Product from '../Product';
-import productMock from '../../mock/product';
 import { findAllProducts } from '../../services/ProductService';
 import { useEffect } from 'react';
 
 const ProductList = () => {
-    const [categoriaTab, setCategoriaTab] = useState('Fast');
+    const [categoriaTab, setCategoriaTab] = useState('652bdd54ab454c1cf02e8bed');
     const [products, setProducts] = useState([]);
 
     const getProducts = async () => {
@@ -15,19 +14,21 @@ const ProductList = () => {
 
     useEffect(() => {
         getProducts();
-    }, [])   
+    },[])
 
     return (
         <section className='my-6 text-xl w-full'>
             <div className='flex flex-row justify-center space-x-6 mb-2'>
-                <p className={categoriaTab === 'Fast' ? 'menu-cat-active' : 'menu-cat'} onClick={() => setCategoriaTab('Fast')}>Fast</p>
-                <p className={categoriaTab === 'Combos' ? 'menu-cat-active' : 'menu-cat'} onClick={() => setCategoriaTab('Combos')}>Combos</p>
-                <p className={categoriaTab === 'Bebidas' ? 'menu-cat-active' : 'menu-cat'} onClick={() => setCategoriaTab('Bebidas')}>Bebidas</p>
+                <p className={categoriaTab === '652bdd54ab454c1cf02e8bed' ? 'menu-cat-active' : 'menu-cat'} onClick={() => setCategoriaTab('652bdd54ab454c1cf02e8bed')}>Fast Chicken</p>
+                <p className={categoriaTab === '652bdd62ab454c1cf02e8bf7' ? 'menu-cat-active' : 'menu-cat'} onClick={() => setCategoriaTab('652bdd62ab454c1cf02e8bf7')}>Combos</p>
+                <p className={categoriaTab === '652bdd5bab454c1cf02e8bf2' ? 'menu-cat-active' : 'menu-cat'} onClick={() => setCategoriaTab('652bdd5bab454c1cf02e8bf2')}>Bebidas</p>
             </div>
 
             <div className='flex flex-row flex-wrap justify-around'>
                 {products.map((product) => (
-                    <Product key={product._id} product={product} />
+                    (product.categoria[0]._id === categoriaTab ?
+                        <Product key={product._id} product={product} />
+                        : null)
                 ))}
             </div>
         </section>

@@ -5,6 +5,12 @@ const findAllCategories = () =>
         .then(response => response.data)
         .catch(error => console.log(error));
 
+const findCategoryById = (id) =>
+    api.get(`/categoria/find/${id}`)
+        .then(response => response.data)
+        .catch(error => console.log(error));
+
 export { 
-    findAllCategories
+    findAllCategories,
+    findCategoryById
 }

@@ -1,11 +1,11 @@
 import { Routes, Route } from "react-router-dom";
-import Home from "./pages/Home";
-import Login from "./pages/Login";
-import Cadastro from "./pages/Cadastro";
-import Product from "./pages/ProductInfo";
-import NotFound404 from "./pages/NotFound404";
-import NavBar from "./components/NavBar";
 import { AuthProvider } from "./context/AuthContext";
+import NavBar from "./components/NavBar";
+import NotFound404 from "./pages/NotFound404";
+import Cadastro from "./pages/Cadastro";
+import Login from "./pages/Login";
+import Home from "./pages/Home";
+import Product from "./pages/ProductInfo";
 import ProtectedRoute from "./routes/ProtectedRoute";
 import Admin from "./pages/Admin";
 import AddProduct from "./pages/AddProduct";
